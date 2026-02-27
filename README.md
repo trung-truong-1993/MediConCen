@@ -29,6 +29,10 @@
 
 ```bash
 $ npm install
+```
+
+Clone .env.example to .env and update environment variables
+```bash
 $ npx prisma generate
 ```
 
