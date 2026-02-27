@@ -39,7 +39,13 @@ export abstract class CrudService<
     const result = await this.modelDelegate.findUnique({ where });
 
     if (result) {
-      await this.cache.set(cacheKey, JSON.stringify(result), ttl);
+      await this.cache.set(cacheKey, JSON.stringify(result, (key, value) => {
+        if (typeof value === 'bigint') {
+          return value.toString(); // Convert BigInt to string
+        }
+        return value; // Return everything else unchanged
+      })
+      , ttl);
     }
 
     return result;

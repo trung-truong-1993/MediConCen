@@ -13,9 +13,8 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       connectionLimit: 5,
     });
     super({ adapter });
-
-
   }
+
   async onModuleInit() {
     await this.$connect();
   }
